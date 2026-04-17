@@ -126,7 +126,7 @@
       <div class="meta">
         <div><strong>run-id:</strong> <span id="run-id">N/A</span></div>
         <div><strong>model path:</strong> <span id="model-path">N/A</span></div>
-        <div><strong>実験記録:</strong> <a id="report-link" href="#" hidden>report.md を開く</a></div>
+        <div><strong>実験記録:</strong> <a id="report-link" href="#" hidden>report.html を開く</a></div>
       </div>
       <div class="message" id="message">
         <strong>run が指定されていません。</strong><br>
@@ -157,7 +157,7 @@
 
     if (runId) {
       const modelPath = `../previews/${encodeURIComponent(runId)}/model.glb`;
-      const reportPath = `../previews/${encodeURIComponent(runId)}/report.md`;
+      const reportPath = `../previews/${encodeURIComponent(runId)}/report.html`;
       const titledRunId = `Run ${runId}`;
       document.title = `${titledRunId} | Shared Preview Viewer`;
       pageTitle.textContent = titledRunId;
