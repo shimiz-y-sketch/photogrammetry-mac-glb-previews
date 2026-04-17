@@ -110,7 +110,7 @@
 </head>
 <body>
   <header>
-    <h1>Shared Preview Viewer</h1>
+    <h1 id="page-title">Shared Preview Viewer</h1>
     <p>GitHub Pages 上の共通 viewer から、指定した run の <code>model.glb</code> を読み込みます。</p>
   </header>
 
@@ -141,6 +141,7 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const runId = params.get("run");
+    const pageTitle = document.getElementById("page-title");
     const runIdNode = document.getElementById("run-id");
     const modelPathNode = document.getElementById("model-path");
     const viewer = document.getElementById("viewer");
@@ -148,6 +149,9 @@
 
     if (runId) {
       const modelPath = `../previews/${encodeURIComponent(runId)}/model.glb`;
+      const titledRunId = `Run ${runId}`;
+      document.title = `${titledRunId} | Shared Preview Viewer`;
+      pageTitle.textContent = titledRunId;
       runIdNode.textContent = runId;
       modelPathNode.textContent = modelPath;
       viewer.src = modelPath;
