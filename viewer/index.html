@@ -79,6 +79,13 @@
       color: var(--muted);
     }
 
+    .meta a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+
     model-viewer {
       width: 100%;
       height: min(72vh, 840px);
@@ -119,6 +126,7 @@
       <div class="meta">
         <div><strong>run-id:</strong> <span id="run-id">N/A</span></div>
         <div><strong>model path:</strong> <span id="model-path">N/A</span></div>
+        <div><strong>report:</strong> <a id="report-link" href="#" hidden>report.md を開く</a></div>
         <div class="hint">URL 例: <code>?run=260414_009</code></div>
       </div>
       <model-viewer
@@ -144,16 +152,20 @@
     const pageTitle = document.getElementById("page-title");
     const runIdNode = document.getElementById("run-id");
     const modelPathNode = document.getElementById("model-path");
+    const reportLink = document.getElementById("report-link");
     const viewer = document.getElementById("viewer");
     const message = document.getElementById("message");
 
     if (runId) {
       const modelPath = `../previews/${encodeURIComponent(runId)}/model.glb`;
+      const reportPath = `../previews/${encodeURIComponent(runId)}/report.md`;
       const titledRunId = `Run ${runId}`;
       document.title = `${titledRunId} | Shared Preview Viewer`;
       pageTitle.textContent = titledRunId;
       runIdNode.textContent = runId;
       modelPathNode.textContent = modelPath;
+      reportLink.href = reportPath;
+      reportLink.hidden = false;
       viewer.src = modelPath;
       viewer.style.display = "block";
       message.innerHTML = `<strong>読み込み中...</strong><br>${modelPath}`;
