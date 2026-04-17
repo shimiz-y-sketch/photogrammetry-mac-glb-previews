@@ -96,8 +96,8 @@
     }
 
     .message {
-      padding: 28px 18px;
-      border-top: 1px solid var(--border);
+      padding: 18px;
+      border-bottom: 1px solid var(--border);
       color: var(--muted);
       line-height: 1.7;
     }
@@ -126,8 +126,11 @@
       <div class="meta">
         <div><strong>run-id:</strong> <span id="run-id">N/A</span></div>
         <div><strong>model path:</strong> <span id="model-path">N/A</span></div>
-        <div><strong>report:</strong> <a id="report-link" href="#" hidden>report.md を開く</a></div>
-        <div class="hint">URL 例: <code>?run=260414_009</code></div>
+        <div><strong>実験記録:</strong> <a id="report-link" href="#" hidden>report.md を開く</a></div>
+      </div>
+      <div class="message" id="message">
+        <strong>run が指定されていません。</strong><br>
+        URL に <code>?run=&lt;run-id&gt;</code> を付けてください。
       </div>
       <model-viewer
         id="viewer"
@@ -139,10 +142,6 @@
         loading="eager"
         alt="3D model preview">
       </model-viewer>
-      <div class="message" id="message">
-        <strong>run が指定されていません。</strong><br>
-        URL に <code>?run=&lt;run-id&gt;</code> を付けてください。
-      </div>
     </section>
   </main>
 
