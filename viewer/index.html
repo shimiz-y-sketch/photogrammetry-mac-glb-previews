@@ -74,6 +74,11 @@
       color: var(--accent);
     }
 
+    .meta .value {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
     .hint {
       font-size: 14px;
       color: var(--muted);
@@ -125,6 +130,7 @@
     <section class="panel">
       <div class="meta">
         <div><strong>run-id:</strong> <span id="run-id">N/A</span></div>
+        <div><strong>入力画像のディレクトリ:</strong> <span id="input-folder" class="value">N/A</span></div>
         <div><strong>model path:</strong> <span id="model-path">N/A</span></div>
         <div><strong>実験記録:</strong> <a id="report-link" href="#" hidden>report.html を開く</a></div>
       </div>
@@ -150,10 +156,37 @@
     const runId = params.get("run");
     const pageTitle = document.getElementById("page-title");
     const runIdNode = document.getElementById("run-id");
+    const inputFolderNode = document.getElementById("input-folder");
     const modelPathNode = document.getElementById("model-path");
     const reportLink = document.getElementById("report-link");
     const viewer = document.getElementById("viewer");
     const message = document.getElementById("message");
+
+    async function loadInputFolder(reportPath) {
+      try {
+        const response = await fetch(reportPath, { cache: "no-store" });
+        if (!response.ok) {
+          return null;
+        }
+
+        const html = await response.text();
+        const documentNode = new DOMParser().parseFromString(html, "text/html");
+        const rows = Array.from(documentNode.querySelectorAll("tr"));
+        const inputFolderRow = rows.find((row) => {
+          const cells = row.querySelectorAll("th, td");
+          return cells.length >= 2 && cells[0].textContent.trim() === "入力フォルダ";
+        });
+
+        if (!inputFolderRow) {
+          return null;
+        }
+
+        const cells = inputFolderRow.querySelectorAll("th, td");
+        return cells[1].textContent.trim();
+      } catch (_error) {
+        return null;
+      }
+    }
 
     if (runId) {
       const modelPath = `../previews/${encodeURIComponent(runId)}/model.glb`;
@@ -168,6 +201,12 @@
       viewer.src = modelPath;
       viewer.style.display = "block";
       message.innerHTML = `<strong>読み込み中...</strong><br>${modelPath}`;
+
+      loadInputFolder(reportPath).then((inputFolder) => {
+        if (inputFolder) {
+          inputFolderNode.textContent = inputFolder;
+        }
+      });
 
       viewer.addEventListener("load", () => {
         message.innerHTML = `<strong>読み込み完了</strong><br>${modelPath}`;
