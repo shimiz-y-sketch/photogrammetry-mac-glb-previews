@@ -65,26 +65,39 @@
     }
 
     .meta {
-      padding: 16px 18px;
+      padding: 16px 18px 8px;
       display: grid;
-      gap: 8px;
+      gap: 12px;
     }
 
-    .meta strong {
+    .summary {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .summary th,
+    .summary td {
+      text-align: left;
+      vertical-align: top;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .summary th {
+      width: 34%;
       color: var(--accent);
+      font-weight: 700;
+      padding-right: 16px;
     }
 
-    .meta .value {
+    .summary td {
+      color: var(--text);
       overflow-wrap: anywhere;
       word-break: break-word;
     }
 
-    .hint {
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .meta a {
+    .summary a {
       color: #0b57d0;
       font-weight: 600;
       text-decoration-thickness: 0.08em;
@@ -129,10 +142,18 @@
   <main>
     <section class="panel">
       <div class="meta">
-        <div><strong>run-id:</strong> <span id="run-id">N/A</span></div>
-        <div><strong>入力画像のディレクトリ:</strong> <span id="input-folder" class="value">N/A</span></div>
-        <div><strong>model path:</strong> <span id="model-path">N/A</span></div>
-        <div><strong>実験記録:</strong> <a id="report-link" href="#" hidden>report.html を開く</a></div>
+        <table class="summary" aria-label="Preview summary">
+          <tr><th>run-id</th><td id="run-id">N/A</td></tr>
+          <tr><th>撮影機種</th><td id="camera-models">N/A</td></tr>
+          <tr><th>入力画像のディレクトリ</th><td id="input-folder">N/A</td></tr>
+          <tr><th>model path</th><td id="model-path">N/A</td></tr>
+          <tr><th>実験記録</th><td><a id="report-link" href="#" hidden>report.html を開く</a></td></tr>
+          <tr><th>総処理時間</th><td id="total-duration">N/A</td></tr>
+          <tr><th>平均画像サイズ</th><td id="average-image-size">N/A</td></tr>
+          <tr><th>平均ファイルサイズ</th><td id="average-file-size">N/A</td></tr>
+          <tr><th>invalid</th><td id="invalid-count">N/A</td></tr>
+          <tr><th>skipped</th><td id="skipped-count">N/A</td></tr>
+        </table>
       </div>
       <div class="message" id="message">
         <strong>run が指定されていません。</strong><br>
@@ -156,13 +177,19 @@
     const runId = params.get("run");
     const pageTitle = document.getElementById("page-title");
     const runIdNode = document.getElementById("run-id");
+    const cameraModelsNode = document.getElementById("camera-models");
     const inputFolderNode = document.getElementById("input-folder");
     const modelPathNode = document.getElementById("model-path");
     const reportLink = document.getElementById("report-link");
+    const totalDurationNode = document.getElementById("total-duration");
+    const averageImageSizeNode = document.getElementById("average-image-size");
+    const averageFileSizeNode = document.getElementById("average-file-size");
+    const invalidCountNode = document.getElementById("invalid-count");
+    const skippedCountNode = document.getElementById("skipped-count");
     const viewer = document.getElementById("viewer");
     const message = document.getElementById("message");
 
-    async function loadInputFolder(reportPath) {
+    async function loadReportValue(reportPath, rowLabel) {
       try {
         const response = await fetch(reportPath, { cache: "no-store" });
         if (!response.ok) {
@@ -172,19 +199,71 @@
         const html = await response.text();
         const documentNode = new DOMParser().parseFromString(html, "text/html");
         const rows = Array.from(documentNode.querySelectorAll("tr"));
-        const inputFolderRow = rows.find((row) => {
+        const targetRow = rows.find((row) => {
           const cells = row.querySelectorAll("th, td");
-          return cells.length >= 2 && cells[0].textContent.trim() === "入力フォルダ";
+          return cells.length >= 2 && cells[0].textContent.trim() === rowLabel;
         });
 
-        if (!inputFolderRow) {
+        if (!targetRow) {
           return null;
         }
 
-        const cells = inputFolderRow.querySelectorAll("th, td");
+        const cells = targetRow.querySelectorAll("th, td");
         return cells[1].textContent.trim();
       } catch (_error) {
         return null;
+      }
+    }
+
+    function extractTableValue(documentNode, rowLabel) {
+      const rows = Array.from(documentNode.querySelectorAll("tr"));
+      const targetRow = rows.find((row) => {
+        const cells = row.querySelectorAll("th, td");
+        return cells.length >= 2 && cells[0].textContent.trim() === rowLabel;
+      });
+
+      if (!targetRow) {
+        return null;
+      }
+
+      const cells = targetRow.querySelectorAll("th, td");
+      return cells[1].textContent.trim();
+    }
+
+    async function loadSummaryValues(reportPath) {
+      try {
+        const response = await fetch(reportPath, { cache: "no-store" });
+        if (!response.ok) {
+          return;
+        }
+
+        const html = await response.text();
+        const documentNode = new DOMParser().parseFromString(html, "text/html");
+        const values = {
+          inputFolder: extractTableValue(documentNode, "入力フォルダ"),
+          cameraModels: extractTableValue(documentNode, "入力画像の機種"),
+          inputImageCount: extractTableValue(documentNode, "入力画像枚数"),
+          totalDuration: extractTableValue(documentNode, "run_started -> processing_complete"),
+          averageImageSize: extractTableValue(documentNode, "画像サイズ"),
+          averageFileSize: extractTableValue(documentNode, "ファイルサイズ"),
+          invalidCount: extractTableValue(documentNode, "invalid_sample"),
+          skippedCount: extractTableValue(documentNode, "skipped_sample"),
+        };
+
+        if (values.inputFolder) inputFolderNode.textContent = values.inputFolder;
+        if (values.cameraModels) cameraModelsNode.textContent = values.cameraModels;
+        if (values.totalDuration) totalDurationNode.textContent = values.totalDuration;
+        if (values.averageImageSize) averageImageSizeNode.textContent = values.averageImageSize;
+        if (values.averageFileSize) averageFileSizeNode.textContent = values.averageFileSize;
+        if (values.inputImageCount) {
+          if (values.invalidCount) invalidCountNode.textContent = `${values.invalidCount}/${values.inputImageCount}枚`;
+          if (values.skippedCount) skippedCountNode.textContent = `${values.skippedCount}/${values.inputImageCount}枚`;
+        } else {
+          if (values.invalidCount) invalidCountNode.textContent = values.invalidCount;
+          if (values.skippedCount) skippedCountNode.textContent = values.skippedCount;
+        }
+      } catch (_error) {
+        // keep defaults
       }
     }
 
@@ -202,11 +281,7 @@
       viewer.style.display = "block";
       message.innerHTML = `<strong>読み込み中...</strong><br>${modelPath}`;
 
-      loadInputFolder(reportPath).then((inputFolder) => {
-        if (inputFolder) {
-          inputFolderNode.textContent = inputFolder;
-        }
-      });
+      loadSummaryValues(reportPath);
 
       viewer.addEventListener("load", () => {
         message.innerHTML = `<strong>読み込み完了</strong><br>${modelPath}`;
