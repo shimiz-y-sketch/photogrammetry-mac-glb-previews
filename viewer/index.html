@@ -56,18 +56,8 @@
       grid-template-columns: minmax(0, 1fr);
     }
 
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      box-shadow: 0 14px 40px rgba(31, 26, 20, 0.08);
-      overflow: hidden;
-    }
-
     .meta {
-      padding: 16px 18px 8px;
-      display: grid;
-      gap: 12px;
+      padding: 4px 0 10px;
     }
 
     .details {
@@ -93,6 +83,14 @@
       font-weight: 600;
       text-decoration-thickness: 0.08em;
       text-underline-offset: 0.18em;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 14px 40px rgba(31, 26, 20, 0.08);
+      overflow: hidden;
     }
 
     .summary {
@@ -158,23 +156,24 @@
   </header>
 
   <main>
+    <section class="meta">
+      <ul class="details" aria-label="Preview details">
+        <li><strong>run-id:</strong> <span id="run-id">N/A</span></li>
+        <li><strong>撮影機種:</strong> <span id="camera-models">N/A</span></li>
+        <li><strong>input path:</strong> <span id="input-folder">N/A</span></li>
+        <li><strong>model path:</strong> <span id="model-path">N/A</span></li>
+        <li><strong>実験記録:</strong> <a id="report-link" href="#" hidden>report.html を開く</a></li>
+      </ul>
+    </section>
+
     <section class="panel">
-      <div class="meta">
-        <ul class="details" aria-label="Preview details">
-          <li><strong>run-id:</strong> <span id="run-id">N/A</span></li>
-          <li><strong>撮影機種:</strong> <span id="camera-models">N/A</span></li>
-          <li><strong>input path:</strong> <span id="input-folder">N/A</span></li>
-          <li><strong>model path:</strong> <span id="model-path">N/A</span></li>
-          <li><strong>実験記録:</strong> <a id="report-link" href="#" hidden>report.html を開く</a></li>
-        </ul>
-        <table class="summary" aria-label="Preview summary">
+      <table class="summary" aria-label="Preview summary">
           <tr><th>総処理時間</th><td id="total-duration">N/A</td></tr>
           <tr><th>平均画像サイズ</th><td id="average-image-size">N/A</td></tr>
           <tr><th>平均ファイルサイズ</th><td id="average-file-size">N/A</td></tr>
           <tr><th>invalid</th><td id="invalid-count">N/A</td></tr>
           <tr><th>skipped</th><td id="skipped-count">N/A</td></tr>
-        </table>
-      </div>
+      </table>
       <div class="message" id="message">
         <strong>run が指定されていません。</strong><br>
         URL に <code>?run=&lt;run-id&gt;</code> を付けてください。
