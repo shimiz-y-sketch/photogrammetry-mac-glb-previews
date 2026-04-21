@@ -161,8 +161,7 @@
         <li><strong>run-id:</strong> <span id="run-id">N/A</span></li>
         <li><strong>撮影機種:</strong> <span id="camera-models">N/A</span></li>
         <li><strong>input path:</strong> <span id="input-folder">N/A</span></li>
-        <li><strong>model path:</strong> <span id="model-path">N/A</span></li>
-        <li><strong>実験記録:</strong> <a id="report-link" href="#" hidden>report.html を開く</a></li>
+          <li><strong>実験記録:</strong> <a id="report-link" href="#" hidden>report.html を開く</a></li>
       </ul>
     </section>
 
@@ -198,7 +197,6 @@
     const runIdNode = document.getElementById("run-id");
     const cameraModelsNode = document.getElementById("camera-models");
     const inputFolderNode = document.getElementById("input-folder");
-    const modelPathNode = document.getElementById("model-path");
     const reportLink = document.getElementById("report-link");
     const totalDurationNode = document.getElementById("total-duration");
     const averageImageSizeNode = document.getElementById("average-image-size");
@@ -212,7 +210,7 @@
       const rows = Array.from(documentNode.querySelectorAll("tr"));
       const targetRow = rows.find((row) => {
         const cells = row.querySelectorAll("th, td");
-        return cells.length >= 2 && cells[0].textContent.trim() === rowLabel;
+        return cells.length >= 2 && normalizeLabel(cells[0].textContent) === rowLabel;
       });
 
       if (!targetRow) {
@@ -221,6 +219,38 @@
 
       const cells = targetRow.querySelectorAll("th, td");
       return cells[1].textContent.trim();
+    }
+
+    function normalizeLabel(value) {
+      return value.replace(/`/g, "").trim();
+    }
+
+    function extractSectionTableValue(documentNode, sectionLabel, rowLabel) {
+      const headings = Array.from(documentNode.querySelectorAll("h1, h2, h3, h4"));
+      const sectionHeading = headings.find((heading) => normalizeLabel(heading.textContent) === sectionLabel);
+      if (!sectionHeading) {
+        return null;
+      }
+
+      let node = sectionHeading.nextElementSibling;
+      while (node && !/^H[1-4]$/.test(node.tagName)) {
+        if (node.tagName === "TABLE") {
+          const rows = Array.from(node.querySelectorAll("tr"));
+          const targetRow = rows.find((row) => {
+            const cells = row.querySelectorAll("th, td");
+            return cells.length >= 2 && normalizeLabel(cells[0].textContent) === rowLabel;
+          });
+
+          if (targetRow) {
+            const cells = targetRow.querySelectorAll("th, td");
+            return cells[1].textContent.trim();
+          }
+        }
+
+        node = node.nextElementSibling;
+      }
+
+      return null;
     }
 
     async function loadSummaryValues(reportPath) {
@@ -237,10 +267,10 @@
           cameraModels: extractTableValue(documentNode, "入力画像の機種"),
           inputImageCount: extractTableValue(documentNode, "入力画像枚数"),
           totalDuration: extractTableValue(documentNode, "run_started -> processing_complete"),
-          averageImageSize: extractTableValue(documentNode, "画像サイズ"),
-          averageFileSize: extractTableValue(documentNode, "ファイルサイズ"),
-          invalidCount: extractTableValue(documentNode, "invalid_sample"),
-          skippedCount: extractTableValue(documentNode, "skipped_sample"),
+          averageImageSize: extractSectionTableValue(documentNode, "画像サイズ分布", "平均"),
+          averageFileSize: extractSectionTableValue(documentNode, "ファイルサイズ分布", "平均"),
+          invalidCount: extractTableValue(documentNode, "invalid_sample 件数"),
+          skippedCount: extractTableValue(documentNode, "skipped_sample 件数"),
         };
 
         if (values.inputFolder) inputFolderNode.textContent = values.inputFolder;
@@ -267,17 +297,16 @@
       document.title = `${titledRunId} | Shared Preview Viewer`;
       pageTitle.textContent = titledRunId;
       runIdNode.textContent = runId;
-      modelPathNode.textContent = modelPath;
       reportLink.href = reportPath;
       reportLink.hidden = false;
       viewer.src = modelPath;
       viewer.style.display = "block";
-      message.innerHTML = `<strong>読み込み中...</strong><br>${modelPath}`;
+      message.innerHTML = `<strong>読み込み中...</strong>：${modelPath}`;
 
       loadSummaryValues(reportPath);
 
       viewer.addEventListener("load", () => {
-        message.innerHTML = `<strong>読み込み完了</strong><br>${modelPath}`;
+        message.innerHTML = `<strong>読み込み完了</strong>：${modelPath}`;
       });
 
       viewer.addEventListener("error", () => {
