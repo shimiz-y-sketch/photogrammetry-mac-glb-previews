@@ -70,6 +70,31 @@
       gap: 12px;
     }
 
+    .details {
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+      list-style: none;
+      font-size: 14px;
+    }
+
+    .details li {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .details strong {
+      color: var(--accent);
+    }
+
+    .details a {
+      color: #0b57d0;
+      font-weight: 600;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+
     .summary {
       width: 100%;
       border-collapse: collapse;
@@ -95,13 +120,6 @@
       color: var(--text);
       overflow-wrap: anywhere;
       word-break: break-word;
-    }
-
-    .summary a {
-      color: #0b57d0;
-      font-weight: 600;
-      text-decoration-thickness: 0.08em;
-      text-underline-offset: 0.18em;
     }
 
     model-viewer {
@@ -142,12 +160,14 @@
   <main>
     <section class="panel">
       <div class="meta">
+        <ul class="details" aria-label="Preview details">
+          <li><strong>run-id:</strong> <span id="run-id">N/A</span></li>
+          <li><strong>撮影機種:</strong> <span id="camera-models">N/A</span></li>
+          <li><strong>input path:</strong> <span id="input-folder">N/A</span></li>
+          <li><strong>model path:</strong> <span id="model-path">N/A</span></li>
+          <li><strong>実験記録:</strong> <a id="report-link" href="#" hidden>report.html を開く</a></li>
+        </ul>
         <table class="summary" aria-label="Preview summary">
-          <tr><th>run-id</th><td id="run-id">N/A</td></tr>
-          <tr><th>撮影機種</th><td id="camera-models">N/A</td></tr>
-          <tr><th>入力画像のディレクトリ</th><td id="input-folder">N/A</td></tr>
-          <tr><th>model path</th><td id="model-path">N/A</td></tr>
-          <tr><th>実験記録</th><td><a id="report-link" href="#" hidden>report.html を開く</a></td></tr>
           <tr><th>総処理時間</th><td id="total-duration">N/A</td></tr>
           <tr><th>平均画像サイズ</th><td id="average-image-size">N/A</td></tr>
           <tr><th>平均ファイルサイズ</th><td id="average-file-size">N/A</td></tr>
@@ -188,32 +208,6 @@
     const skippedCountNode = document.getElementById("skipped-count");
     const viewer = document.getElementById("viewer");
     const message = document.getElementById("message");
-
-    async function loadReportValue(reportPath, rowLabel) {
-      try {
-        const response = await fetch(reportPath, { cache: "no-store" });
-        if (!response.ok) {
-          return null;
-        }
-
-        const html = await response.text();
-        const documentNode = new DOMParser().parseFromString(html, "text/html");
-        const rows = Array.from(documentNode.querySelectorAll("tr"));
-        const targetRow = rows.find((row) => {
-          const cells = row.querySelectorAll("th, td");
-          return cells.length >= 2 && cells[0].textContent.trim() === rowLabel;
-        });
-
-        if (!targetRow) {
-          return null;
-        }
-
-        const cells = targetRow.querySelectorAll("th, td");
-        return cells[1].textContent.trim();
-      } catch (_error) {
-        return null;
-      }
-    }
 
     function extractTableValue(documentNode, rowLabel) {
       const rows = Array.from(documentNode.querySelectorAll("tr"));
