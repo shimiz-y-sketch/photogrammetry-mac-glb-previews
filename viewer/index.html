@@ -161,7 +161,9 @@
         <li><strong>run-id:</strong> <span id="run-id">N/A</span></li>
         <li><strong>撮影機種:</strong> <span id="camera-models">N/A</span></li>
         <li><strong>input path:</strong> <span id="input-folder">N/A</span></li>
-          <li><strong>実験記録:</strong> <a id="report-link" href="#" hidden>report.html を開く</a></li>
+        <li><strong>実験記録:</strong> <a id="report-link" href="#" hidden>report.html を開く</a></li>
+        <li><strong>撮影条件分析:</strong> <a id="capture-analysis-link" href="#" hidden>capture_analysis.html を開く</a></li>
+        <li><strong>画像品質分析:</strong> <a id="image-quality-analysis-link" href="#" hidden>image_quality_analysis.html を開く</a></li>
       </ul>
     </section>
 
@@ -198,6 +200,8 @@
     const cameraModelsNode = document.getElementById("camera-models");
     const inputFolderNode = document.getElementById("input-folder");
     const reportLink = document.getElementById("report-link");
+    const captureAnalysisLink = document.getElementById("capture-analysis-link");
+    const imageQualityAnalysisLink = document.getElementById("image-quality-analysis-link");
     const totalDurationNode = document.getElementById("total-duration");
     const averageImageSizeNode = document.getElementById("average-image-size");
     const averageFileSizeNode = document.getElementById("average-file-size");
@@ -293,12 +297,18 @@
     if (runId) {
       const modelPath = `../previews/${encodeURIComponent(runId)}/model.glb`;
       const reportPath = `../previews/${encodeURIComponent(runId)}/report.html`;
+      const captureAnalysisPath = `../previews/${encodeURIComponent(runId)}/capture_analysis.html`;
+      const imageQualityAnalysisPath = `../previews/${encodeURIComponent(runId)}/image_quality_analysis.html`;
       const titledRunId = `Run ${runId}`;
       document.title = `${titledRunId} | Shared Preview Viewer`;
       pageTitle.textContent = titledRunId;
       runIdNode.textContent = runId;
       reportLink.href = reportPath;
       reportLink.hidden = false;
+      captureAnalysisLink.href = captureAnalysisPath;
+      captureAnalysisLink.hidden = false;
+      imageQualityAnalysisLink.href = imageQualityAnalysisPath;
+      imageQualityAnalysisLink.hidden = false;
       viewer.src = modelPath;
       viewer.style.display = "block";
       message.innerHTML = `<strong>読み込み中...</strong>：${modelPath}`;
