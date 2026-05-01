@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Run 260430_005 Report</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f3ee;
+      --panel: rgba(255, 252, 245, 0.94);
+      --text: #1f1a14;
+      --muted: #6e6255;
+      --border: rgba(31, 26, 20, 0.12);
+      --accent: #8d5a2b;
+      --link: #0b57d0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "SF Pro Text", "Hiragino Sans", "Noto Sans JP", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(141, 90, 43, 0.18), transparent 30%),
+        linear-gradient(180deg, #f7f1e7 0%, var(--bg) 58%, #ece6dc 100%);
+    }
+
+    .shell {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 14px 40px rgba(31, 26, 20, 0.08);
+      padding: 24px;
+    }
+
+    .back-link {
+      color: var(--link);
+      font-weight: 600;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+
+    .intro {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    h1, h2, h3 {
+      line-height: 1.25;
+    }
+
+    h1 { margin: 0 0 16px; }
+    h2, h3 { margin-top: 28px; }
+
+    p, li {
+      line-height: 1.7;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 20px;
+      background: rgba(255,255,255,0.55);
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: rgba(141, 90, 43, 0.08);
+    }
+
+    code, pre {
+      font-family: "SFMono-Regular", "Menlo", "Monaco", monospace;
+    }
+
+    code {
+      background: rgba(31, 26, 20, 0.06);
+      border-radius: 6px;
+      padding: 0.15em 0.4em;
+    }
+
+    pre {
+      overflow-x: auto;
+      background: rgba(31, 26, 20, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    a {
+      color: var(--link);
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="panel">
+      <p class="intro"><a class="back-link" href="../../viewer/?run=260430_005">3D preview に戻る</a></p>
+      <h1>実験レポート: 260430_005</h1>
+<p>このレポートは <code>photogrammetry-cli run</code> により自動生成されます。</p>
+<h2>Run 概要</h2>
+<table><thead><tr><th>項目</th><th>値</th></tr></thead><tbody><tr><td>Run ID</td><td><code>260430_005</code></td></tr><tr><td>実行日時</td><td><code>2026-04-30 15:41:02</code></td></tr><tr><td>入力フォルダ</td><td><code>../input/260420_01_15_3m_x1_ウツボ_南東入口</code></td></tr><tr><td>入力画像の機種</td><td><code>iPhone 16</code></td></tr><tr><td>実行結果</td><td><code>success</code></td></tr><tr><td>使用した出力形式</td><td><code>usdz</code>, <code>obj</code></td></tr><tr><td>共有確認用 preview</td><td><code>success</code></td></tr></tbody></table>
+<h3>出力成果物</h3>
+<ul><li><code>events.jsonl</code></li><li><code>input_manifest.json</code></li><li><code>metrics.json</code></li><li><code>model.usdz</code></li><li><code>model_obj</code></li><li><code>shared_preview</code></li></ul>
+<h2>所要時間</h2>
+<h3>前処理（起点: run_started）</h3>
+<table><thead><tr><th>到達点</th><th>経過時間</th></tr></thead><tbody><tr><td><code>input_validated</code></td><td><code>0.0 秒 (00:00)</code></td></tr><tr><td><code>input_complete</code></td><td><code>11.0 秒 (00:11)</code></td></tr></tbody></table>
+<h3>生成処理（起点: input_complete）</h3>
+<table><thead><tr><th>到達点</th><th>経過時間</th></tr></thead><tbody><tr><td><code>usdz</code> 完了</td><td><code>586.0 秒 (09:46)</code></td></tr><tr><td><code>obj</code> 完了</td><td><code>586.0 秒 (09:46)</code></td></tr></tbody></table>
+<h3>全体</h3>
+<table><thead><tr><th>区間</th><th>所要時間</th></tr></thead><tbody><tr><td><code>run_started -&gt; processing_complete</code></td><td><code>597.0 秒 (09:57)</code></td></tr><tr><td><code>最後の request_complete -&gt; processing_complete</code></td><td><code>0.0 秒 (00:00)</code></td></tr></tbody></table>
+<h2>入力画像サマリ</h2>
+<h3>全体</h3>
+<table><thead><tr><th>項目</th><th>値</th></tr></thead><tbody><tr><td>入力画像枚数</td><td><code>54</code></td></tr><tr><td>拡張子の分布</td><td><code>jpg</code>:<code>54</code></td></tr><tr><td>向きの分布</td><td><code>landscape</code>:<code>54</code></td></tr><tr><td>撮影時刻あり画像数</td><td><code>54</code></td></tr><tr><td>撮影時刻欠損画像数</td><td><code>0</code></td></tr></tbody></table>
+<h3>画像サイズ分布</h3>
+<table><thead><tr><th>項目</th><th>値</th></tr></thead><tbody><tr><td>最小</td><td><code>5712 x 4284</code></td></tr><tr><td>最大</td><td><code>5712 x 4284</code></td></tr><tr><td>中央</td><td><code>5712 x 4284</code></td></tr><tr><td>平均</td><td><code>5712 x 4284</code></td></tr></tbody></table>
+<h3>ファイルサイズ分布</h3>
+<table><thead><tr><th>項目</th><th>値</th></tr></thead><tbody><tr><td>最小</td><td><code>8.23 MB</code></td></tr><tr><td>最大</td><td><code>9.53 MB</code></td></tr><tr><td>中央</td><td><code>9.00 MB</code></td></tr><tr><td>平均</td><td><code>8.97 MB</code></td></tr></tbody></table>
+<h3>撮影時刻分布</h3>
+<table><thead><tr><th>項目</th><th>値</th></tr></thead><tbody><tr><td>最初の撮影時刻</td><td><code>2026-04-20 13:55:15</code></td></tr><tr><td>最後の撮影時刻</td><td><code>2026-04-20 13:57:39</code></td></tr><tr><td>撮影継続時間</td><td><code>144.0 秒 (02:24)</code></td></tr><tr><td>欠損率</td><td><code>0.0%</code></td></tr></tbody></table>
+<h2>メタデータ品質レポート</h2>
+<h3>主要メタデータ（core）</h3>
+<p>未検出項目なし</p>
+<table><thead><tr><th>メタデータキー</th><th>表示名</th><th>意味</th><th>存在画像数</th><th>欠損画像数</th><th>欠損率</th></tr></thead><tbody><tr><td><code>PixelWidth</code></td><td>画像幅</td><td>画像のピクセル幅</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>PixelHeight</code></td><td>画像高さ</td><td>画像のピクセル高さ</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.DateTimeOriginal</code></td><td>元の撮影日時</td><td>シャッターを切った日時</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.FNumber</code></td><td>F値</td><td>絞り値</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.ExposureTime</code></td><td>露光時間</td><td>シャッター速度に相当する露光時間</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.ISOSpeedRatings</code></td><td>ISO感度</td><td>撮影時の ISO 感度</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.FocalLength</code></td><td>焦点距離</td><td>レンズの焦点距離</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.FocalLenIn35mmFilm</code></td><td>35mm換算焦点距離</td><td>35mm 判換算の焦点距離</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{TIFF}.Make</code></td><td>メーカー名</td><td>撮影機器のメーカー</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{TIFF}.Model</code></td><td>機種名</td><td>撮影機器のモデル名</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{TIFF}.Orientation</code></td><td>画像向き</td><td>Exif Orientation の値。画像の回転や反転状態</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr></tbody></table>
+<h3>主要メタデータの代表値</h3>
+<table><thead><tr><th>表示名</th><th>値の概要</th></tr></thead><tbody><tr><td>画像幅</td><td>5712 px</td></tr><tr><td>画像高さ</td><td>4284 px</td></tr><tr><td>元の撮影日時</td><td>2026-04-20 13:55:15 〜 2026-04-20 13:57:39</td></tr><tr><td>F値</td><td>F1.60</td></tr><tr><td>露光時間</td><td>1/724 秒 〜 1/359 秒</td></tr><tr><td>ISO感度</td><td>50 / 64</td></tr><tr><td>焦点距離</td><td>5.96 mm</td></tr><tr><td>35mm換算焦点距離</td><td>26 mm</td></tr><tr><td>メーカー名</td><td>Apple</td></tr><tr><td>機種名</td><td>iPhone 16</td></tr><tr><td>画像向き</td><td>6（右に90°回転 / 縦位置）</td></tr></tbody></table>
+<h3>補助メタデータ（optional）</h3>
+<p>未検出項目: <code>デジタルズーム倍率</code>, <code>緯度</code>, <code>経度</code>, <code>高度</code>, <code>撮影方向</code></p>
+<table><thead><tr><th>メタデータキー</th><th>表示名</th><th>意味</th><th>存在画像数</th><th>欠損画像数</th><th>欠損率</th></tr></thead><tbody><tr><td><code>Headroom</code></td><td>HDR拡張輝度</td><td>HDR や拡張輝度に関する補助情報</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>PrimaryImage</code></td><td>主画像フラグ</td><td>HEIC コンテナ内で主画像として扱われることを示すフラグ</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.LensMake</code></td><td>レンズメーカー</td><td>レンズのメーカー名</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.LensModel</code></td><td>レンズ名</td><td>レンズのモデル名</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.LensSpecification</code></td><td>レンズ仕様</td><td>焦点距離や開放 F 値などのレンズ仕様</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.ExposureBiasValue</code></td><td>露出補正</td><td>撮影時の露出補正量</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.WhiteBalance</code></td><td>ホワイトバランス</td><td>ホワイトバランス設定</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.MeteringMode</code></td><td>測光モード</td><td>露出測定のモード</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.Flash</code></td><td>フラッシュ</td><td>フラッシュ使用状態</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.ColorSpace</code></td><td>色空間</td><td>画像の色空間</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.CompositeImage</code></td><td>合成画像フラグ</td><td>HDR や複数フレーム合成の有無を示す補助情報</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.ExposureMode</code></td><td>露出モード</td><td>自動露出や手動露出の状態</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.ExposureProgram</code></td><td>露出プログラム</td><td>全自動やプログラム AE などの露出方式</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.DigitalZoomRatio</code></td><td>デジタルズーム倍率</td><td>デジタルズームの倍率。光学条件の混在確認に使う</td><td><code>0</code></td><td><code>54</code></td><td><code>100.0%</code></td></tr><tr><td><code>{Exif}.BrightnessValue</code></td><td>輝度値</td><td>画像記録時の明るさの指標</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.SceneType</code></td><td>シーン種別</td><td>静止画や特殊な記録パイプラインを識別する補助情報</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.GPSLatitude</code></td><td>緯度</td><td>撮影地点の緯度</td><td><code>0</code></td><td><code>54</code></td><td><code>100.0%</code></td></tr><tr><td><code>{GPS}.GPSLongitude</code></td><td>経度</td><td>撮影地点の経度</td><td><code>0</code></td><td><code>54</code></td><td><code>100.0%</code></td></tr><tr><td><code>{GPS}.GPSAltitude</code></td><td>高度</td><td>撮影地点の高度</td><td><code>0</code></td><td><code>54</code></td><td><code>100.0%</code></td></tr><tr><td><code>{GPS}.GPSImgDirection</code></td><td>撮影方向</td><td>撮影時に端末が向いていた方位</td><td><code>0</code></td><td><code>54</code></td><td><code>100.0%</code></td></tr><tr><td><code>ProfileName</code></td><td>色プロファイル名</td><td>埋め込まれた色プロファイル名</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.OffsetTimeOriginal</code></td><td>撮影時タイムゾーン</td><td>元の撮影日時に対応するタイムゾーンオフセット</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{TIFF}.Software</code></td><td>ソフトウェア</td><td>画像生成・加工に使われたソフトウェア情報</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{TIFF}.HostComputer</code></td><td>ホスト環境</td><td>生成元のホスト環境情報</td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr></tbody></table>
+<h3>補助メタデータの代表値</h3>
+<table><thead><tr><th>表示名</th><th>値の概要</th></tr></thead><tbody><tr><td>レンズ名</td><td>iPhone 16 back dual wide camera 5.96mm f/1.6</td></tr><tr><td>レンズ仕様</td><td>焦点距離 2.22 mm 〜 5.96 mm、開放 F1.60 〜 F2.20</td></tr><tr><td>露出補正</td><td>0 EV</td></tr><tr><td>ホワイトバランス</td><td>自動</td></tr><tr><td>フラッシュ</td><td>発光なし（フラッシュ機能あり）</td></tr><tr><td>色空間</td><td>未校正（sRGB 以外）</td></tr><tr><td>デジタルズーム倍率</td><td>未検出</td></tr><tr><td>輝度値</td><td>6.41 〜 7.01</td></tr><tr><td>撮影方向</td><td>未検出</td></tr></tbody></table>
+<h3>上記以外で今回観測されたメタデータ</h3>
+<table><thead><tr><th>メタデータキー</th><th>存在画像数</th><th>欠損画像数</th><th>欠損率</th></tr></thead><tbody><tr><td><code>ColorModel</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>DPIHeight</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>DPIWidth</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>Depth</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>Orientation</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{ExifAux}</code></td><td><code>1</code></td><td><code>53</code></td><td><code>98.1%</code></td></tr><tr><td><code>{ExifAux}.Regions</code></td><td><code>1</code></td><td><code>53</code></td><td><code>98.1%</code></td></tr><tr><td><code>{ExifAux}.Regions.HeightAppliedTo</code></td><td><code>1</code></td><td><code>53</code></td><td><code>98.1%</code></td></tr><tr><td><code>{ExifAux}.Regions.RegionList</code></td><td><code>1</code></td><td><code>53</code></td><td><code>98.1%</code></td></tr><tr><td><code>{ExifAux}.Regions.WidthAppliedTo</code></td><td><code>1</code></td><td><code>53</code></td><td><code>98.1%</code></td></tr><tr><td><code>{Exif}.ApertureValue</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.ComponentsConfiguration</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.DateTimeDigitized</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.ExifVersion</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.FlashPixVersion</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.OffsetTime</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.OffsetTimeDigitized</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.PixelXDimension</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.PixelYDimension</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.SceneCaptureType</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.SensingMethod</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.ShutterSpeedValue</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.SubjectArea</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.SubsecTimeDigitized</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{Exif}.SubsecTimeOriginal</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.Altitude</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.AltitudeRef</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.DateStamp</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.DestBearing</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.DestBearingRef</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.HPositioningError</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.ImgDirection</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.ImgDirectionRef</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.Latitude</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.LatitudeRef</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.Longitude</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.LongitudeRef</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.Speed</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.SpeedRef</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{GPS}.TimeStamp</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{TIFF}.DateTime</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{TIFF}.ResolutionUnit</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{TIFF}.XResolution</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr><tr><td><code>{TIFF}.YResolution</code></td><td><code>54</code></td><td><code>0</code></td><td><code>0.0%</code></td></tr></tbody></table>
+<h3>今回観測された Apple独自タグ</h3>
+<p>検出キー数: <code>69</code></p>
+<p><code>{MakerApple}.1</code>, <code>{MakerApple}.12</code>, <code>{MakerApple}.13</code>, <code>{MakerApple}.14</code>, <code>{MakerApple}.16</code>, <code>{MakerApple}.2</code>, <code>{MakerApple}.20</code>, <code>{MakerApple}.23</code>, <code>{MakerApple}.25</code>, <code>{MakerApple}.3</code>, <code>{MakerApple}.3.epoch</code>, <code>{MakerApple}.3.flags</code>, <code>{MakerApple}.3.timescale</code>, <code>{MakerApple}.3.value</code>, <code>{MakerApple}.31</code>, <code>{MakerApple}.32</code>, <code>{MakerApple}.33</code>, <code>{MakerApple}.35</code>, <code>{MakerApple}.37</code>, <code>{MakerApple}.38</code>, <code>{MakerApple}.39</code>, <code>{MakerApple}.4</code>, <code>{MakerApple}.43</code>, <code>{MakerApple}.45</code>, <code>{MakerApple}.46</code>, <code>{MakerApple}.47</code>, <code>{MakerApple}.48</code>, <code>{MakerApple}.5</code>, <code>{MakerApple}.54</code>, <code>{MakerApple}.55</code>, <code>{MakerApple}.58</code>, <code>{MakerApple}.59</code>, <code>{MakerApple}.6</code>, <code>{MakerApple}.60</code>, <code>{MakerApple}.63</code>, <code>{MakerApple}.65</code>, <code>{MakerApple}.67</code>, <code>{MakerApple}.68</code>, <code>{MakerApple}.69</code>, <code>{MakerApple}.7</code>, <code>{MakerApple}.70</code>, <code>{MakerApple}.74</code>, <code>{MakerApple}.77</code>, <code>{MakerApple}.78</code>, <code>{MakerApple}.78.1</code>, <code>{MakerApple}.78.2</code>, <code>{MakerApple}.79</code>, <code>{MakerApple}.8</code>, <code>{MakerApple}.82</code>, <code>{MakerApple}.83</code>, <code>{MakerApple}.84</code>, <code>{MakerApple}.84.0</code>, <code>{MakerApple}.84.1</code>, <code>{MakerApple}.84.2</code>, <code>{MakerApple}.84.3</code>, <code>{MakerApple}.84.4</code>, <code>{MakerApple}.84.5</code>, <code>{MakerApple}.84.6</code>, <code>{MakerApple}.84.7</code>, <code>{MakerApple}.85</code>, <code>{MakerApple}.88</code>, <code>{MakerApple}.90</code>, <code>{MakerApple}.90.0</code>, <code>{MakerApple}.90.1</code>, <code>{MakerApple}.90.2</code>, <code>{MakerApple}.90.3</code>, <code>{MakerApple}.90.4</code>, <code>{MakerApple}.96</code>, <code>{MakerApple}.97</code></p>
+<h2>イベント要約</h2>
+<h3>サマリ</h3>
+<table><thead><tr><th>項目</th><th>値</th></tr></thead><tbody><tr><td><code>invalid_sample</code> 件数</td><td><code>0</code></td></tr><tr><td><code>skipped_sample</code> 件数</td><td><code>0</code></td></tr><tr><td><code>request_error</code> 件数</td><td><code>0</code></td></tr><tr><td><code>run_failed</code> 有無</td><td><code>なし</code></td></tr><tr><td>失敗理由</td><td><code>N/A</code></td></tr></tbody></table>
+<h3>イベント状態</h3>
+<p>異常イベントは検出されませんでした。</p>
+    </div>
+  </div>
+</body>
+</html>
