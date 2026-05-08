@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Run 260508_005 Image Quality Analysis</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f3ee;
+      --panel: rgba(255, 252, 245, 0.94);
+      --text: #1f1a14;
+      --muted: #6e6255;
+      --border: rgba(31, 26, 20, 0.12);
+      --accent: #8d5a2b;
+      --link: #0b57d0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "SF Pro Text", "Hiragino Sans", "Noto Sans JP", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(141, 90, 43, 0.18), transparent 30%),
+        linear-gradient(180deg, #f7f1e7 0%, var(--bg) 58%, #ece6dc 100%);
+    }
+
+    .shell {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 14px 40px rgba(31, 26, 20, 0.08);
+      padding: 24px;
+    }
+
+    .back-link {
+      color: var(--link);
+      font-weight: 600;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+
+    .intro {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    h1, h2, h3 {
+      line-height: 1.25;
+    }
+
+    h1 { margin: 0 0 16px; }
+    h2, h3 { margin-top: 28px; }
+
+    p, li {
+      line-height: 1.7;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 20px;
+      background: rgba(255,255,255,0.55);
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: rgba(141, 90, 43, 0.08);
+    }
+
+    code, pre {
+      font-family: "SFMono-Regular", "Menlo", "Monaco", monospace;
+    }
+
+    code {
+      background: rgba(31, 26, 20, 0.06);
+      border-radius: 6px;
+      padding: 0.15em 0.4em;
+    }
+
+    pre {
+      overflow-x: auto;
+      background: rgba(31, 26, 20, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    a {
+      color: var(--link);
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="panel">
+      <p class="intro"><a class="back-link" href="../../viewer/?run=260508_005">3D preview に戻る</a></p>
+      <h1>画像品質分析: 260508_005</h1>
+<p>この分析は、画像ピクセルを後追いで解析し、データセットとしての使いやすさを比較しやすくすることを目的としています。 第1弾では、ピンボケ・ブレの混合指標、白飛び / 黒つぶれ、輝度の基本統計を記録します。</p>
+<h2>Run 概要</h2>
+<table><thead><tr><th>項目</th><th>値</th></tr></thead><tbody><tr><td>Run ID</td><td><code>260508_005</code></td></tr><tr><td>実行日時</td><td><code>2026-05-08 14:34:01</code></td></tr><tr><td>入力フォルダ</td><td><code>../input/260420_01_15_3m_x1_ウツボ_南東入口</code></td></tr><tr><td>入力画像枚数</td><td><code>54</code></td></tr><tr><td>撮影機種</td><td><code>iPhone 16</code></td></tr></tbody></table>
+<h2>画像品質サマリ</h2>
+<table><thead><tr><th>指標</th><th>説明</th><th>代表値</th><th>最小</th><th>最大</th><th>中央</th><th>ユニーク値数</th><th>外れ値数</th><th>注意画像数</th><th>危険画像数</th></tr></thead><tbody><tr><td>Sharpness</td><td>輝度画像のラプラシアン分散。低い場合はピンボケまたはブレの可能性</td><td>2570.78</td><td>1854.70</td><td>3550.07</td><td>2570.78</td><td><code>46</code></td><td><code>0</code></td><td>ー</td><td>ー</td></tr><tr><td>Clipping High</td><td>輝度値が 250 以上の画素率</td><td>0.30%</td><td>0.15%</td><td>0.51%</td><td>0.30%</td><td><code>25</code></td><td>ー</td><td><code>0</code></td><td><code>0</code></td></tr><tr><td>Clipping Low</td><td>輝度値が 5 以下の画素率</td><td>0.07%</td><td>0.02%</td><td>0.23%</td><td>0.07%</td><td><code>15</code></td><td>ー</td><td><code>0</code></td><td><code>0</code></td></tr><tr><td>Luminance Mean</td><td>画像全体の平均輝度</td><td>122.46</td><td>118.05</td><td>131.38</td><td>122.46</td><td><code>40</code></td><td><code>1</code></td><td>ー</td><td>ー</td></tr><tr><td>Luminance Std</td><td>画像全体の輝度標準偏差</td><td>50.32</td><td>46.30</td><td>52.74</td><td>50.32</td><td><code>36</code></td><td><code>0</code></td><td>ー</td><td>ー</td></tr></tbody></table>
+<h2>指標の読み方</h2>
+<ul><li><code>Sharpness</code>: 低い場合はピンボケまたはブレの可能性があります。</li><li><code>Clipping High</code>: 高いほど白飛びが多く、明部ディテール欠損の可能性があります。</li><li><code>Clipping Low</code>: 高いほど黒つぶれが多く、暗部ディテール欠損の可能性があります。</li><li><code>Luminance Mean</code>: 画像全体の明るさの目安です。</li><li><code>Luminance Std</code>: 明暗差の大きさの目安です。</li><li><code>外れ値数</code>: 平均 ± 2σ を超える画像枚数です。</li><li><code>注意画像数 / 危険画像数</code>: Clipping 系のみ。<code>&gt; 1%</code> を注意、<code>&gt; 3%</code> を危険として数えます。</li></ul>
+<h2>外れ値画像リスト</h2>
+<h3>Luminance Mean</h3>
+<p>平均 ± 2σ を外れた画像です。</p>
+<ul><li><code>外れ値</code> <code>IMG_0125.JPG</code> (<code>131.38</code>)</li></ul>
+    </div>
+  </div>
+</body>
+</html>
